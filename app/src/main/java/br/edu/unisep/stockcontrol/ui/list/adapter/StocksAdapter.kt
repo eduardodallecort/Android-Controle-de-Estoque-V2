@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import br.edu.unisep.stockcontrol.data.entity.Stock
 import br.edu.unisep.stockcontrol.databinding.ItemStockGroupBinding
 
-class StocksAdapter:
+class StocksAdapter (private val goProductsList: (Int) -> Unit) :
     RecyclerView.Adapter<StocksAdapter.StocksViewHolder>(){
 
     var stocks = listOf<Stock>()
@@ -25,7 +25,7 @@ class StocksAdapter:
 
     override fun onBindViewHolder(holder: StocksViewHolder, position: Int) {
         holder.bindItem(stocks[position])
-        holder.btnAccessStock.setOnClickListener {  }
+        holder.btnAccessStock.setOnClickListener { goProductsList(position) }
     }
 
     override fun getItemCount(): Int {

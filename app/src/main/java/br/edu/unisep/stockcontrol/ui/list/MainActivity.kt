@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupList() {
 
-        adapter = StocksAdapter()
+        adapter = StocksAdapter(::goToProductsList)
 
         binding.rvStockGroups.adapter = adapter
         binding.rvStockGroups.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
@@ -69,6 +69,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun openStock() {
         startActivityForResult(RegisterStockProductActivity.newIntent(this), REQUEST_CODE_ACCESS_STOCK)
+    }
+
+    private fun goToProductsList(position: Int) {
+        startActivity(ListStockProductsActivity.createIntent(this, "Hello"))
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

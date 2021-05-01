@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.list.viewmodel.ListStockProductsViewModel">
+    tools:context=".ui.list.ListStockProductsActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/tvStockProducts2"
+        android:id="@+id/tvStockProducts"
         android:layout_width="403dp"
         android:layout_height="577dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -19,7 +19,7 @@
         tools:listitem="@layout/item_product_stock" />
 
     <Button
-        android:id="@+id/btn_reg_product_stock2"
+        android:id="@+id/btn_reg_product_stock"
         android:layout_width="141dp"
         android:layout_height="62dp"
         android:text="Cadastrar Produto"
@@ -27,4 +27,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvStockProducts" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,4 +15,9 @@ class ListStocksViewModel : ViewModel() {
         stocks.postValue(allStocks)
     }
 
+    fun remove(position: Int) {
+        allStocks.removeAt(position)
+        stocks.postValue(allStocks)
+    }
+
 }
