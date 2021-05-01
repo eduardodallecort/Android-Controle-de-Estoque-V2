@@ -2,4 +2,6 @@
     <string name="app_name">Controle de Estoque</string>
 
     <string name="titleStocks">Estoques</string>
+
+    <string name="titleProductsStock">Produtos do Estoque</string>
 </resources>

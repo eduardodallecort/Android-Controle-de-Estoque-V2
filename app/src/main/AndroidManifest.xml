@@ -10,8 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StockControl">
         <activity android:name=".ui.register.RegisterStockActivity"></activity>
-        <activity android:name=".RegisterStockProductActivity" />
-        <activity android:name=".ListStockProductActivity" />
+        <activity android:name=".ui.register.RegisterStockProductActivity" />
+        <activity android:name=".ui.list.viewmodel.ListStockProductsViewModel" />
         <activity android:name=".ui.list.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

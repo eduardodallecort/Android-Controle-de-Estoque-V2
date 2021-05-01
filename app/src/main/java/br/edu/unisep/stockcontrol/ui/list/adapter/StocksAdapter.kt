@@ -2,6 +2,7 @@ package br.edu.unisep.stockcontrol.ui.list.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageButton
 import androidx.recyclerview.widget.RecyclerView
 import br.edu.unisep.stockcontrol.data.entity.Stock
 import br.edu.unisep.stockcontrol.databinding.ItemStockGroupBinding
@@ -24,6 +25,7 @@ class StocksAdapter:
 
     override fun onBindViewHolder(holder: StocksViewHolder, position: Int) {
         holder.bindItem(stocks[position])
+        holder.btnAccessStock.setOnClickListener {  }
     }
 
     override fun getItemCount(): Int {
@@ -35,6 +37,9 @@ class StocksAdapter:
         fun bindItem(stock: Stock) {
             binding.tvStockGroupName.text = stock.name
         }
+
+        val btnAccessStock: ImageButton
+            get() = binding.btnAcessStock
 
 
     }
