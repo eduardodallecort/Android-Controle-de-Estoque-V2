@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/mnNewExpense"
+        android:id="@+id/mnNewStock"
         android:icon="@drawable/ic_add_icon_white_36"
         android:title="@string/titleStocks"
         app:showAsAction="always" />

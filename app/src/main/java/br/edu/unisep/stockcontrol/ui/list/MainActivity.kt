@@ -75,7 +75,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
-        if (item.itemId == R.id.mnNewExpense) {
+        if (item.itemId == R.id.mnNewStock) {
             openNewStock()
             return true
         }
