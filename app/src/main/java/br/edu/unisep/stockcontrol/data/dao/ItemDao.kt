@@ -1,0 +1,21 @@
+package br.edu.unisep.stockcontrol.data.dao
+
+import androidx.room.*
+import br.edu.unisep.stockcontrol.data.entity.Item
+
+@Dao
+interface ItemDao {
+
+    @Insert
+    suspend fun save(item:Item)
+
+    @Update
+    suspend fun update(item:Item)
+
+    @Delete
+    suspend fun  delete(item: Item)
+
+    @Query("select * from item where id = :stockid")
+    suspend fun findAllStock(stockid: Int):List<Item>
+
+}

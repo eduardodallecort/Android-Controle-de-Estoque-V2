@@ -5,12 +5,15 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import androidx.activity.viewModels
 import br.edu.unisep.stockcontrol.data.entity.Stock
 import br.edu.unisep.stockcontrol.databinding.ActivityRegisterStockBinding
-import br.edu.unisep.stockcontrol.ui.list.ListStockProductsActivity
-import br.edu.unisep.stockcontrol.ui.list.MainActivity
+import br.edu.unisep.stockcontrol.dto.Stock.RegisterStockDto
+import br.edu.unisep.stockcontrol.ui.liststock.MainActivity
+import br.edu.unisep.stockcontrol.ui.register.viewmodel.RegisterStockViewModel
 
 class RegisterStockActivity : AppCompatActivity() {
+    private val viewModel by viewModels<RegisterStockViewModel>()
 
     private val binding: ActivityRegisterStockBinding by lazy {
         ActivityRegisterStockBinding.inflate(layoutInflater)
@@ -34,17 +37,8 @@ class RegisterStockActivity : AppCompatActivity() {
     }
 
     private fun save() {
-        val stock = Stock(binding.etStockName.text.toString())
-
-        val intentResult = Intent()
-
-        intentResult.putExtra(EXTRA_RESULT_STOCK, stock)
-
-
-
-        setResult(RESULT_OK, intentResult)
-        finish()
-
+        val stock = RegisterStockDto(binding.etStockName.text.toString())
+        viewModel.save(stock)
 
     }
 

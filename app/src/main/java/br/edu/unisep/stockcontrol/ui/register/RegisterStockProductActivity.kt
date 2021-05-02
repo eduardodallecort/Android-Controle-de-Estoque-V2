@@ -5,13 +5,13 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
-import br.edu.unisep.stockcontrol.R
+import androidx.activity.viewModels
 import br.edu.unisep.stockcontrol.data.entity.Item
 import br.edu.unisep.stockcontrol.databinding.ActivityRegisterStockProductBinding
-import br.edu.unisep.stockcontrol.ui.list.ListStockProductsActivity
-import br.edu.unisep.stockcontrol.ui.list.MainActivity
+import br.edu.unisep.stockcontrol.ui.listitem.ListStockProductsActivity
 
 class RegisterStockProductActivity : AppCompatActivity() {
+
 
     private val binding: ActivityRegisterStockProductBinding by lazy {
         ActivityRegisterStockProductBinding.inflate(layoutInflater)
@@ -34,15 +34,9 @@ class RegisterStockProductActivity : AppCompatActivity() {
     }
 
     private fun save() {
-        val item = Item(binding.etProductName.text.toString(), binding.etProductAmount.text.toString().toInt())
+        val item = Item(binding.etProductName.text.toString(), binding.etProductAmount.text.toString().toInt(),1)
 
-        val intentResult = Intent()
 
-        intentResult.putExtra(EXTRA_RESULT_ITEM, item)
-
-        setResult(RESULT_OK, intentResult)
-
-        finish()
 
     }
 

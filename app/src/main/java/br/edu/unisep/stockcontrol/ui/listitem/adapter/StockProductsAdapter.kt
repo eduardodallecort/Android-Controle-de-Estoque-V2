@@ -1,6 +1,5 @@
-package br.edu.unisep.stockcontrol.ui.list.adapter
+package br.edu.unisep.stockcontrol.ui.listitem.adapter
 
-import android.content.ClipData
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageButton

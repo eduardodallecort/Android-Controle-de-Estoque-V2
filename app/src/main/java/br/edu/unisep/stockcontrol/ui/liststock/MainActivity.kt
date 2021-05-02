@@ -1,4 +1,4 @@
-package br.edu.unisep.stockcontrol.ui.list
+package br.edu.unisep.stockcontrol.ui.liststock
 
 import android.content.Context
 import android.content.Intent
@@ -7,22 +7,25 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.viewModels
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.observe
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.edu.unisep.stockcontrol.R
 import br.edu.unisep.stockcontrol.data.entity.Stock
 import br.edu.unisep.stockcontrol.databinding.ActivityMainBinding
-import br.edu.unisep.stockcontrol.ui.list.adapter.StocksAdapter
-import br.edu.unisep.stockcontrol.ui.list.viewmodel.ListStocksViewModel
+import br.edu.unisep.stockcontrol.dto.Stock.StockDto
+import br.edu.unisep.stockcontrol.ui.listitem.ListStockProductsActivity
+import br.edu.unisep.stockcontrol.ui.liststock.adapter.StocksAdapter
+import br.edu.unisep.stockcontrol.ui.liststock.viewmodel.ListStocksViewModel
 import br.edu.unisep.stockcontrol.ui.register.RegisterStockActivity
 import br.edu.unisep.stockcontrol.ui.register.RegisterStockActivity.Companion.EXTRA_RESULT_STOCK
-import br.edu.unisep.stockcontrol.ui.register.RegisterStockProductActivity
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var adapter: StocksAdapter
 
-    private val viewModel by viewModels<ListStocksViewModel>()
+    private val viewModel: ListStocksViewModel by viewModels()
 
 
     private val binding : ActivityMainBinding by lazy {
@@ -35,43 +38,41 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setupList()
+        setupEvents()
 
-        viewModel.stocks.observe(this) { stocks ->
-            adapter.stocks = stocks
-        }
 
     }
 
     private fun setupList() {
 
-        adapter = StocksAdapter(::goToProductsList)
+        adapter = StocksAdapter()
+        adapter.onItemSelected = ::onStockSelected
+
 
         binding.rvStockGroups.adapter = adapter
-        binding.rvStockGroups.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        binding.rvStockGroups.layoutManager = LinearLayoutManager(this)
         binding.rvStockGroups.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
 
 
     }
-
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == REQUEST_CODE_NEW_STOCK && resultCode == RESULT_OK) {
-            val stock = data?.getSerializableExtra(EXTRA_RESULT_STOCK) as Stock
-
-            viewModel.add(stock)
+    private fun setupEvents() {
+        viewModel.listStocks.observe(this) { stock ->
+            this.adapter.stocks = stock
         }
+
+        viewModel.list()
     }
+    private fun onStockSelected(stock: StockDto) {
+      stock
+    }
+
+
 
     private fun openNewStock() {
         startActivityForResult(RegisterStockActivity.newIntent(this), REQUEST_CODE_NEW_STOCK)
     }
 
 
-    private fun goToProductsList(position: Int) {
-        startActivity(ListStockProductsActivity.createIntent(this, "Hello"))
-    }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_stocks, menu)

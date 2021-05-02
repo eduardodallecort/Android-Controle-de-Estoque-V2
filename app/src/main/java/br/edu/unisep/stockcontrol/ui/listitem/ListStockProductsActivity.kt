@@ -1,4 +1,4 @@
-package br.edu.unisep.stockcontrol.ui.list
+package br.edu.unisep.stockcontrol.ui.listitem
 
 import android.content.Context
 import android.content.Intent
@@ -12,8 +12,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import br.edu.unisep.stockcontrol.R
 import br.edu.unisep.stockcontrol.data.entity.Item
 import br.edu.unisep.stockcontrol.databinding.ActivityListStockProductsBinding
-import br.edu.unisep.stockcontrol.ui.list.adapter.StockProductsAdapter
-import br.edu.unisep.stockcontrol.ui.list.viewmodel.ListStockProductsViewModel
+import br.edu.unisep.stockcontrol.ui.listitem.adapter.StockProductsAdapter
+import br.edu.unisep.stockcontrol.ui.listitem.viewmodel.ListStockProductsViewModel
+import br.edu.unisep.stockcontrol.ui.liststock.MainActivity
 import br.edu.unisep.stockcontrol.ui.register.RegisterStockProductActivity
 import br.edu.unisep.stockcontrol.ui.register.RegisterStockProductActivity.Companion.EXTRA_RESULT_ITEM
 
@@ -33,14 +34,13 @@ class ListStockProductsActivity : AppCompatActivity() {
 
         setupList()
 
-        viewModel.items.observe(this) { items ->
-            adapter.items = items
-        }
+
     }
 
     private fun setupList() {
 
-        adapter = StockProductsAdapter()
+        adapter =
+            StockProductsAdapter()
 
         binding.rvStockProducts.adapter = adapter
         binding.rvStockProducts.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
@@ -48,6 +48,7 @@ class ListStockProductsActivity : AppCompatActivity() {
 
         binding.btnBackMainActivity.setOnClickListener { backToMainActivity() }
     }
+
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -61,11 +62,18 @@ class ListStockProductsActivity : AppCompatActivity() {
     }
 
     private fun openNewItem() {
-        startActivityForResult(RegisterStockProductActivity.newIntent(this), REQUEST_CODE_NEW_PRODUCT)
+        startActivityForResult(RegisterStockProductActivity.newIntent(this),
+            REQUEST_CODE_NEW_PRODUCT
+        )
     }
 
     private fun backToMainActivity() {
-        startActivity(MainActivity.createIntent(this, "Hello"))
+        startActivity(
+            MainActivity.createIntent(
+                this,
+                "Hello"
+            )
+        )
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

@@ -1,16 +1,18 @@
-package br.edu.unisep.stockcontrol.ui.list.adapter
+package br.edu.unisep.stockcontrol.ui.liststock.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageButton
 import androidx.recyclerview.widget.RecyclerView
-import br.edu.unisep.stockcontrol.data.entity.Stock
+import br.edu.unisep.stockcontrol.databinding.ItemProductStockBinding
 import br.edu.unisep.stockcontrol.databinding.ItemStockGroupBinding
+import br.edu.unisep.stockcontrol.dto.Stock.StockDto
 
-class StocksAdapter (private val goProductsList: (Int) -> Unit) :
-    RecyclerView.Adapter<StocksAdapter.StocksViewHolder>(){
+class StocksAdapter :RecyclerView.Adapter<StocksAdapter.StocksViewHolder>() {
 
-    var stocks = listOf<Stock>()
+    lateinit var onItemSelected: (StockDto) -> Unit
+
+    var stocks = listOf<StockDto>()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -24,22 +26,22 @@ class StocksAdapter (private val goProductsList: (Int) -> Unit) :
     }
 
     override fun onBindViewHolder(holder: StocksViewHolder, position: Int) {
-        holder.bindItem(stocks[position])
-        holder.btnAccessStock.setOnClickListener { goProductsList(position) }
+        holder.bindItem(stocks[position],onItemSelected)
+
     }
 
     override fun getItemCount(): Int {
         return stocks.size
     }
 
-    inner class StocksViewHolder(private val binding: ItemStockGroupBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class StocksViewHolder(binding: ItemStockGroupBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bindItem(stock: Stock) {
+        private val binding = ItemStockGroupBinding.bind(itemView)
+
+        fun bindItem(stock: StockDto, onItemSelected: (StockDto) -> Unit) {
             binding.tvStockGroupName.text = stock.name
+            binding.root.setOnClickListener { onItemSelected(stock) }
         }
-
-        val btnAccessStock: ImageButton
-            get() = binding.btnAcessStock
 
 
     }

@@ -1,4 +1,4 @@
-package br.edu.unisep.stockcontrol.ui.list.viewmodel
+package br.edu.unisep.stockcontrol.ui.listitem.viewmodel
 
 
 import androidx.lifecycle.MutableLiveData

@@ -1,7 +1,13 @@
 package br.edu.unisep.stockcontrol.data.entity
 
-import java.io.Serializable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
-data class Stock(
-    val name: String
-): Serializable
+
+@Entity(tableName = "stock")
+data class Stock (
+    val name: String,
+){
+    @PrimaryKey(autoGenerate = true)
+    var id: Int? = null
+}
