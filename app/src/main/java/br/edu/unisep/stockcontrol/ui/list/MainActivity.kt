@@ -67,9 +67,6 @@ class MainActivity : AppCompatActivity() {
         startActivityForResult(RegisterStockActivity.newIntent(this), REQUEST_CODE_NEW_STOCK)
     }
 
-    private fun openStock() {
-        startActivityForResult(RegisterStockProductActivity.newIntent(this), REQUEST_CODE_ACCESS_STOCK)
-    }
 
     private fun goToProductsList(position: Int) {
         startActivity(ListStockProductsActivity.createIntent(this, "Hello"))
@@ -85,9 +82,6 @@ class MainActivity : AppCompatActivity() {
         if (item.itemId == R.id.mnNewStock) {
             openNewStock()
             return true
-        } else if (item.itemId == R.id.mnNewProduct) {
-            openStock()
-            return true
         }
 
         return false
@@ -95,7 +89,6 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         const val REQUEST_CODE_NEW_STOCK = 1
-        const val REQUEST_CODE_ACCESS_STOCK = 2
     }
 
     

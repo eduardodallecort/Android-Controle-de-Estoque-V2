@@ -36,6 +36,7 @@ class StockProductsAdapter:
 
         fun bindItem(item: Item) {
             binding.tvProductStockName.text = item.name
+            binding.tvProductStockAmount.text = item.count.toString()
         }
 
         val btnEditItem: ImageButton
