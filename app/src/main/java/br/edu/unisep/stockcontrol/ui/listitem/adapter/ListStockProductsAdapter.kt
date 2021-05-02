@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import br.edu.unisep.stockcontrol.data.entity.Item
 import br.edu.unisep.stockcontrol.databinding.ItemProductStockBinding
 
-class StockProductsAdapter:
-    RecyclerView.Adapter<StockProductsAdapter.StockProductsViewHolder>(){
+class ListStockProductsAdapter:
+    RecyclerView.Adapter<ListStockProductsAdapter.StockProductsViewHolder>(){
 
     var items = listOf<Item>()
         set(value) {

@@ -13,7 +13,7 @@ import br.edu.unisep.stockcontrol.R
 import br.edu.unisep.stockcontrol.data.entity.Item
 import br.edu.unisep.stockcontrol.databinding.ActivityListStockProductsBinding
 import br.edu.unisep.stockcontrol.dto.Stock.StockDto
-import br.edu.unisep.stockcontrol.ui.listitem.adapter.StockProductsAdapter
+import br.edu.unisep.stockcontrol.ui.listitem.adapter.ListStockProductsAdapter
 import br.edu.unisep.stockcontrol.ui.listitem.contract.ListStockProductsContract.Companion.STOCK
 import br.edu.unisep.stockcontrol.ui.listitem.viewmodel.ListStockProductsViewModel
 import br.edu.unisep.stockcontrol.ui.liststock.MainActivity
@@ -22,7 +22,7 @@ import br.edu.unisep.stockcontrol.ui.register.RegisterStockProductActivity.Compa
 
 class ListStockProductsActivity : AppCompatActivity() {
 
-    private lateinit var adapter: StockProductsAdapter
+    private lateinit var adapterList: ListStockProductsAdapter
 
     private val viewModel by viewModels<ListStockProductsViewModel>()
 
@@ -49,9 +49,9 @@ class ListStockProductsActivity : AppCompatActivity() {
 
     private fun setupList() {
 
-        adapter = StockProductsAdapter()
+        adapterList = ListStockProductsAdapter()
 
-        binding.rvStockProducts.adapter = adapter
+        binding.rvStockProducts.adapter = adapterList
         binding.rvStockProducts.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         binding.rvStockProducts.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
 

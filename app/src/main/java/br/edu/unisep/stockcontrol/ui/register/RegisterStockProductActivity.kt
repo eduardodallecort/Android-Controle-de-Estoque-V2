@@ -13,10 +13,11 @@ import br.edu.unisep.stockcontrol.dto.Stock.StockDto
 import br.edu.unisep.stockcontrol.ui.listitem.ListStockProductsActivity
 import br.edu.unisep.stockcontrol.ui.listitem.contract.ListStockProductsContract
 import br.edu.unisep.stockcontrol.ui.listitem.viewmodel.ListStockProductsViewModel
+import br.edu.unisep.stockcontrol.ui.register.viewmodel.RegisterStockProductActivityViewModel
 
 class RegisterStockProductActivity : AppCompatActivity() {
 
-    private val viewModel by viewModels<ListStockProductsViewModel>()
+    private val viewModel by viewModels<RegisterStockProductActivityViewModel>()
 
 
     private val binding: ActivityRegisterStockProductBinding by lazy {
@@ -40,9 +41,7 @@ class RegisterStockProductActivity : AppCompatActivity() {
     }
 
     private fun save() {
-        val stock = intent.getSerializableExtra(ListStockProductsContract.STOCK) as StockDto
-        viewModel.stock=stock
-        val item = RegisterItemDto(binding.etProductName.text.toString(),binding.etProductAmount.text.toString().toInt(),1)
+        val item = RegisterItemDto(binding.etProductName.text.toString(),binding.etProductAmount.text.toString().toInt(),2)
 
             viewModel.save(item)
 

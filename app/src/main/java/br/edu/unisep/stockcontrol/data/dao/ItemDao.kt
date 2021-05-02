@@ -15,7 +15,7 @@ interface ItemDao {
     @Delete
     suspend fun  delete(item: Item)
 
-    @Query("select * from item where id = :stockid")
+    @Query("select * from item where stockId = :stockid")
     suspend fun findAllStock(stockid: Int):List<Item>
 
 }
