@@ -8,9 +8,13 @@ import android.view.MenuItem
 import androidx.activity.viewModels
 import br.edu.unisep.stockcontrol.data.entity.Item
 import br.edu.unisep.stockcontrol.databinding.ActivityRegisterStockProductBinding
+import br.edu.unisep.stockcontrol.dto.Item.RegisterItemDto
 import br.edu.unisep.stockcontrol.ui.listitem.ListStockProductsActivity
+import br.edu.unisep.stockcontrol.ui.listitem.viewmodel.ListStockProductsViewModel
 
 class RegisterStockProductActivity : AppCompatActivity() {
+
+    private val viewModel by viewModels<ListStockProductsViewModel>()
 
 
     private val binding: ActivityRegisterStockProductBinding by lazy {
@@ -34,9 +38,9 @@ class RegisterStockProductActivity : AppCompatActivity() {
     }
 
     private fun save() {
-        val item = Item(binding.etProductName.text.toString(), binding.etProductAmount.text.toString().toInt(),1)
+        val item = RegisterItemDto(binding.etProductName.text.toString(),binding.etProductAmount.text.toString().toInt(),1)
 
-
+            viewModel.save(item)
 
     }
 

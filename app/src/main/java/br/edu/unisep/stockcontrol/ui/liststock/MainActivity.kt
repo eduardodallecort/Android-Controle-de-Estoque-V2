@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.observe
@@ -16,6 +17,7 @@ import br.edu.unisep.stockcontrol.data.entity.Stock
 import br.edu.unisep.stockcontrol.databinding.ActivityMainBinding
 import br.edu.unisep.stockcontrol.dto.Stock.StockDto
 import br.edu.unisep.stockcontrol.ui.listitem.ListStockProductsActivity
+import br.edu.unisep.stockcontrol.ui.listitem.contract.ListStockProductsContract
 import br.edu.unisep.stockcontrol.ui.liststock.adapter.StocksAdapter
 import br.edu.unisep.stockcontrol.ui.liststock.viewmodel.ListStocksViewModel
 import br.edu.unisep.stockcontrol.ui.register.RegisterStockActivity
@@ -63,13 +65,14 @@ class MainActivity : AppCompatActivity() {
         viewModel.list()
     }
     private fun onStockSelected(stock: StockDto) {
-      stock
+        openNewStock.launch(stock)
+
     }
 
 
 
-    private fun openNewStock() {
-        startActivityForResult(RegisterStockActivity.newIntent(this), REQUEST_CODE_NEW_STOCK)
+    private val openNewStock  = registerForActivityResult(ListStockProductsContract()) {
+       viewModel.list()
     }
 
 
@@ -82,11 +85,17 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         if (item.itemId == R.id.mnNewStock) {
-            openNewStock()
+            registerResult.launch(RegisterStockActivity.newIntent(this))
             return true
         }
 
         return false
+    }
+
+    private val registerResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == RESULT_OK) {
+            viewModel.list()
+        }
     }
 
     companion object {

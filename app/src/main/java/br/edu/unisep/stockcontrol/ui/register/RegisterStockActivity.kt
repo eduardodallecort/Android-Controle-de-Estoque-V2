@@ -39,6 +39,7 @@ class RegisterStockActivity : AppCompatActivity() {
     private fun save() {
         val stock = RegisterStockDto(binding.etStockName.text.toString())
         viewModel.save(stock)
+        backToMainActivity()
 
     }
 

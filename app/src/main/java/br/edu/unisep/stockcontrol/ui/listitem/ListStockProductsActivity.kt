@@ -12,7 +12,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import br.edu.unisep.stockcontrol.R
 import br.edu.unisep.stockcontrol.data.entity.Item
 import br.edu.unisep.stockcontrol.databinding.ActivityListStockProductsBinding
+import br.edu.unisep.stockcontrol.dto.Stock.StockDto
 import br.edu.unisep.stockcontrol.ui.listitem.adapter.StockProductsAdapter
+import br.edu.unisep.stockcontrol.ui.listitem.contract.ListStockProductsContract.Companion.STOCK
 import br.edu.unisep.stockcontrol.ui.listitem.viewmodel.ListStockProductsViewModel
 import br.edu.unisep.stockcontrol.ui.liststock.MainActivity
 import br.edu.unisep.stockcontrol.ui.register.RegisterStockProductActivity
@@ -32,15 +34,22 @@ class ListStockProductsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        setupList()
+        initialize()
 
 
     }
+    private fun initialize() {
+        val stock = intent.getSerializableExtra(STOCK) as StockDto
+        viewModel.stock=stock
+        setupList()
+
+        viewModel.findItems()
+    }
+
 
     private fun setupList() {
 
-        adapter =
-            StockProductsAdapter()
+        adapter = StockProductsAdapter()
 
         binding.rvStockProducts.adapter = adapter
         binding.rvStockProducts.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
@@ -57,7 +66,6 @@ class ListStockProductsActivity : AppCompatActivity() {
         if (requestCode == REQUEST_CODE_NEW_PRODUCT && resultCode == RESULT_OK) {
             val item = data?.getSerializableExtra(EXTRA_RESULT_ITEM) as Item
 
-            viewModel.add(item)
         }
     }
 
