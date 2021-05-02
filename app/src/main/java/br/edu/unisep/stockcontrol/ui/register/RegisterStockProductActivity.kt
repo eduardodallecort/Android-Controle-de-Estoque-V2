@@ -9,7 +9,9 @@ import androidx.activity.viewModels
 import br.edu.unisep.stockcontrol.data.entity.Item
 import br.edu.unisep.stockcontrol.databinding.ActivityRegisterStockProductBinding
 import br.edu.unisep.stockcontrol.dto.Item.RegisterItemDto
+import br.edu.unisep.stockcontrol.dto.Stock.StockDto
 import br.edu.unisep.stockcontrol.ui.listitem.ListStockProductsActivity
+import br.edu.unisep.stockcontrol.ui.listitem.contract.ListStockProductsContract
 import br.edu.unisep.stockcontrol.ui.listitem.viewmodel.ListStockProductsViewModel
 
 class RegisterStockProductActivity : AppCompatActivity() {
@@ -38,6 +40,8 @@ class RegisterStockProductActivity : AppCompatActivity() {
     }
 
     private fun save() {
+        val stock = intent.getSerializableExtra(ListStockProductsContract.STOCK) as StockDto
+        viewModel.stock=stock
         val item = RegisterItemDto(binding.etProductName.text.toString(),binding.etProductAmount.text.toString().toInt(),1)
 
             viewModel.save(item)
