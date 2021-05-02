@@ -13,7 +13,7 @@
         <activity android:name=".ui.listitem.ListStockProductsActivity"></activity>
         <activity android:name=".ui.register.RegisterStockActivity" />
         <activity android:name=".ui.register.RegisterStockProductActivity" />
-        <activity android:name=".ui.liststock.MainActivity">
+        <activity android:name=".ui.liststock.ListStocksActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -16,7 +16,7 @@ import br.edu.unisep.stockcontrol.dto.Stock.StockDto
 import br.edu.unisep.stockcontrol.ui.listitem.adapter.ListStockProductsAdapter
 import br.edu.unisep.stockcontrol.ui.listitem.contract.ListStockProductsContract.Companion.STOCK
 import br.edu.unisep.stockcontrol.ui.listitem.viewmodel.ListStockProductsViewModel
-import br.edu.unisep.stockcontrol.ui.liststock.MainActivity
+import br.edu.unisep.stockcontrol.ui.liststock.ListStocksActivity
 import br.edu.unisep.stockcontrol.ui.register.RegisterStockProductActivity
 import br.edu.unisep.stockcontrol.ui.register.RegisterStockProductActivity.Companion.EXTRA_RESULT_ITEM
 
@@ -77,7 +77,7 @@ class ListStockProductsActivity : AppCompatActivity() {
 
     private fun backToMainActivity() {
         startActivity(
-            MainActivity.createIntent(
+            ListStocksActivity.createIntent(
                 this,
                 "Hello"
             )

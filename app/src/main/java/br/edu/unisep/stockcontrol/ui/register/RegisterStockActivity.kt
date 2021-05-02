@@ -6,10 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.activity.viewModels
-import br.edu.unisep.stockcontrol.data.entity.Stock
 import br.edu.unisep.stockcontrol.databinding.ActivityRegisterStockBinding
 import br.edu.unisep.stockcontrol.dto.Stock.RegisterStockDto
-import br.edu.unisep.stockcontrol.ui.liststock.MainActivity
+import br.edu.unisep.stockcontrol.ui.liststock.ListStocksActivity
 import br.edu.unisep.stockcontrol.ui.register.viewmodel.RegisterStockViewModel
 
 class RegisterStockActivity : AppCompatActivity() {
@@ -44,7 +43,7 @@ class RegisterStockActivity : AppCompatActivity() {
     }
 
     private fun backToMainActivity() {
-        startActivity(MainActivity.createIntent(this, "Hello"))
+        startActivity(ListStocksActivity.createIntent(this, "Hello"))
     }
 
 

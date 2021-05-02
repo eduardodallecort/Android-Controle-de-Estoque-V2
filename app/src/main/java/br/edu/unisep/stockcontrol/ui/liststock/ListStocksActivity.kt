@@ -8,22 +8,18 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.edu.unisep.stockcontrol.R
-import br.edu.unisep.stockcontrol.data.entity.Stock
 import br.edu.unisep.stockcontrol.databinding.ActivityMainBinding
 import br.edu.unisep.stockcontrol.dto.Stock.StockDto
-import br.edu.unisep.stockcontrol.ui.listitem.ListStockProductsActivity
 import br.edu.unisep.stockcontrol.ui.listitem.contract.ListStockProductsContract
 import br.edu.unisep.stockcontrol.ui.liststock.adapter.StocksAdapter
 import br.edu.unisep.stockcontrol.ui.liststock.viewmodel.ListStocksViewModel
 import br.edu.unisep.stockcontrol.ui.register.RegisterStockActivity
-import br.edu.unisep.stockcontrol.ui.register.RegisterStockActivity.Companion.EXTRA_RESULT_STOCK
 
-class MainActivity : AppCompatActivity() {
+class ListStocksActivity : AppCompatActivity() {
 
     private lateinit var adapter: StocksAdapter
 
@@ -101,7 +97,7 @@ class MainActivity : AppCompatActivity() {
     companion object {
 
         fun createIntent(context: Context, message: String) =
-            Intent(context, MainActivity::class.java)
+            Intent(context, ListStocksActivity::class.java)
 
 
 

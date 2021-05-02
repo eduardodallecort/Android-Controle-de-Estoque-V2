@@ -20,15 +20,13 @@ class ListStockProductsViewModel : ViewModel() {
     lateinit var stock: StockDto
 
     val stockItems = MutableLiveData<List<ItemDto>>()
-    var registerResult = MutableLiveData<Unit>()
 
     private val repository = ItemRepository()
 
     fun findItems() {
         viewModelScope.launch {
-            val stockItem = repository.findByStock(stock.Id)
-            stockItems.postValue(stockItem)
-            registerResult.postValue(Unit)
+            val result = repository.findByStock(stock.Id)
+            stockItems.postValue(result)
         }
     }
 
