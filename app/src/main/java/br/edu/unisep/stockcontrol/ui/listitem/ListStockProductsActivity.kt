@@ -43,16 +43,21 @@ class ListStockProductsActivity : AppCompatActivity() {
         initialize()
     }
 
-    private fun initialize() {
-        val stock = intent.getSerializableExtra(STOCK) as StockDto
-        if(stock!=null){
-            viewModel.stock=stock}
-        else{
-            val bundle= intent.extras
-            val stock = StockDto(bundle!!.getInt("STOCK_ID"),"kk")
-            viewModel.stock=stock
-        }
+    override fun onResume() {
+        super.onResume()
+        initialize()
+    }
 
+    private fun initialize() {
+        try{
+        val stock = intent.getSerializableExtra(STOCK) as StockDto
+            viewModel.stock=stock}
+        catch (e:Exception)
+    {
+        val bundle = intent.extras
+        val stock = StockDto(bundle!!.getInt("STOCK_ID"), "kk")
+        viewModel.stock = stock
+    }
 
         setupList()
         setupEvents()

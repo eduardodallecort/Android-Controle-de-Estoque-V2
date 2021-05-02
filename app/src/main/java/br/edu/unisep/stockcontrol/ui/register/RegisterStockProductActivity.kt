@@ -54,7 +54,7 @@ class RegisterStockProductActivity : AppCompatActivity() {
         val intent = Intent(this,ListStockProductsActivity::class.java)
         intent.putExtra("STOCK_ID",id)
 
-        startActivity(ListStockProductsActivity.createIntent(this, "Hello"))
+        startActivity(intent)
     }
 
     private fun getId():Int{
