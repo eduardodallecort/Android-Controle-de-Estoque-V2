@@ -7,6 +7,8 @@ import android.os.Bundle
 import android.view.MenuItem
 import br.edu.unisep.stockcontrol.data.entity.Stock
 import br.edu.unisep.stockcontrol.databinding.ActivityRegisterStockBinding
+import br.edu.unisep.stockcontrol.ui.list.ListStockProductsActivity
+import br.edu.unisep.stockcontrol.ui.list.MainActivity
 
 class RegisterStockActivity : AppCompatActivity() {
 
@@ -28,6 +30,7 @@ class RegisterStockActivity : AppCompatActivity() {
 
     private fun setupEvents() {
         binding.btnRegisterStock.setOnClickListener { save() }
+        binding.btnBackMain.setOnClickListener { backToMainActivity() }
     }
 
     private fun save() {
@@ -43,6 +46,10 @@ class RegisterStockActivity : AppCompatActivity() {
         finish()
 
 
+    }
+
+    private fun backToMainActivity() {
+        startActivity(MainActivity.createIntent(this, "Hello"))
     }
 
 

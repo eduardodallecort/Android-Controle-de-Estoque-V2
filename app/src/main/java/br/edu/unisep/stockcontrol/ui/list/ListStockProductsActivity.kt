@@ -45,6 +45,8 @@ class ListStockProductsActivity : AppCompatActivity() {
         binding.rvStockProducts.adapter = adapter
         binding.rvStockProducts.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         binding.rvStockProducts.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
+
+        binding.btnBackMainActivity.setOnClickListener { backToMainActivity() }
     }
 
 
@@ -60,6 +62,10 @@ class ListStockProductsActivity : AppCompatActivity() {
 
     private fun openNewItem() {
         startActivityForResult(RegisterStockProductActivity.newIntent(this), REQUEST_CODE_NEW_PRODUCT)
+    }
+
+    private fun backToMainActivity() {
+        startActivity(MainActivity.createIntent(this, "Hello"))
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

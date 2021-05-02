@@ -8,6 +8,8 @@ import android.view.MenuItem
 import br.edu.unisep.stockcontrol.R
 import br.edu.unisep.stockcontrol.data.entity.Item
 import br.edu.unisep.stockcontrol.databinding.ActivityRegisterStockProductBinding
+import br.edu.unisep.stockcontrol.ui.list.ListStockProductsActivity
+import br.edu.unisep.stockcontrol.ui.list.MainActivity
 
 class RegisterStockProductActivity : AppCompatActivity() {
 
@@ -27,6 +29,7 @@ class RegisterStockProductActivity : AppCompatActivity() {
 
     private fun setupEvents() {
         binding.btnRegisterProduct.setOnClickListener { save() }
+        binding.btnBackListProducts.setOnClickListener { backToListStockProductsActivity() }
 
     }
 
@@ -41,6 +44,10 @@ class RegisterStockProductActivity : AppCompatActivity() {
 
         finish()
 
+    }
+
+    private fun backToListStockProductsActivity() {
+        startActivity(ListStockProductsActivity.createIntent(this, "Hello"))
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

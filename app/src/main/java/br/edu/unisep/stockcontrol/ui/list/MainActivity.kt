@@ -1,5 +1,6 @@
 package br.edu.unisep.stockcontrol.ui.list
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -88,6 +89,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     companion object {
+
+        fun createIntent(context: Context, message: String) =
+            Intent(context, MainActivity::class.java)
+
+
+
         const val REQUEST_CODE_NEW_STOCK = 1
     }
 
