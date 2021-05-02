@@ -10,6 +10,8 @@ import kotlinx.coroutines.launch
 
 class ListStocksViewModel : ViewModel() {
 
+
+
     private val repository = StockRepository()
 
     val listStocks = MutableLiveData<List<StockDto>>()

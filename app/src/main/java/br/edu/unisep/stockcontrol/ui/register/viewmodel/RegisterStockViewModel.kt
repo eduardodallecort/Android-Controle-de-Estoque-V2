@@ -12,7 +12,6 @@ class RegisterStockViewModel : ViewModel() {
     private val repository = StockRepository()
 
     val onSaveComplete = MutableLiveData<Unit>()
-    var unity: Int = 0
 
     fun save(stock: RegisterStockDto) {
         viewModelScope.launch {

@@ -11,6 +11,7 @@ import br.edu.unisep.stockcontrol.dto.Item.ItemDto
 class ListStockProductsAdapter:
     RecyclerView.Adapter<ListStockProductsAdapter.StockProductsViewHolder>(){
 
+
     var items = listOf<ItemDto>()
         set(value) {
             field = value

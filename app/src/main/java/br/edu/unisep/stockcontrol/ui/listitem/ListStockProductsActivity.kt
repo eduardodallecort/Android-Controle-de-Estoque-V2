@@ -42,9 +42,19 @@ class ListStockProductsActivity : AppCompatActivity() {
     private fun initialize() {
         val stock = intent.getSerializableExtra(STOCK) as StockDto
         viewModel.stock=stock
+
+
         setupList()
         setupEvents()
 
+    }
+
+    private fun saveId(stock : StockDto) {
+        val intent = Intent(this,RegisterStockProductActivity::class.java)
+        val bundle = Bundle()
+        bundle.putInt("STOCK_ID",stock.Id)
+        intent.putExtras(bundle)
+        startActivity(intent)
     }
 
 
@@ -81,6 +91,7 @@ class ListStockProductsActivity : AppCompatActivity() {
         startActivityForResult(RegisterStockProductActivity.newIntent(this),
             REQUEST_CODE_NEW_PRODUCT
         )
+        saveId(viewModel.stock)
     }
 
     private fun backToMainActivity() {

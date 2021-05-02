@@ -6,13 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.activity.viewModels
-import br.edu.unisep.stockcontrol.data.entity.Item
 import br.edu.unisep.stockcontrol.databinding.ActivityRegisterStockProductBinding
 import br.edu.unisep.stockcontrol.dto.Item.RegisterItemDto
-import br.edu.unisep.stockcontrol.dto.Stock.StockDto
 import br.edu.unisep.stockcontrol.ui.listitem.ListStockProductsActivity
-import br.edu.unisep.stockcontrol.ui.listitem.contract.ListStockProductsContract
-import br.edu.unisep.stockcontrol.ui.listitem.viewmodel.ListStockProductsViewModel
 import br.edu.unisep.stockcontrol.ui.register.viewmodel.RegisterStockProductActivityViewModel
 
 class RegisterStockProductActivity : AppCompatActivity() {
@@ -30,6 +26,8 @@ class RegisterStockProductActivity : AppCompatActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+
+
         setupEvents()
 
     }
@@ -41,7 +39,10 @@ class RegisterStockProductActivity : AppCompatActivity() {
     }
 
     private fun save() {
-        val item = RegisterItemDto(binding.etProductName.text.toString(),binding.etProductAmount.text.toString().toInt(),2)
+        val bundle = intent.getExtras();
+        val id = bundle!!.getInt("STOCK_ID")
+
+        val item = RegisterItemDto(binding.etProductName.text.toString(),binding.etProductAmount.text.toString().toInt(),id)
 
             viewModel.save(item)
 

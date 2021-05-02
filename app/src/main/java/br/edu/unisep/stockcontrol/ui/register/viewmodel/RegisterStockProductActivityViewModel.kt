@@ -12,6 +12,7 @@ import kotlinx.coroutines.launch
 class RegisterStockProductActivityViewModel : ViewModel() {
 
 
+
     var registerResult = MutableLiveData<Unit>()
 
     private val repository = ItemRepository()
