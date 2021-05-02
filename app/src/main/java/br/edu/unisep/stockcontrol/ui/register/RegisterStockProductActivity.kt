@@ -39,10 +39,9 @@ class RegisterStockProductActivity : AppCompatActivity() {
     }
 
     private fun save() {
-        val bundle = intent.getExtras();
-        val id = bundle!!.getInt("STOCK_ID")
 
-        val item = RegisterItemDto(binding.etProductName.text.toString(),binding.etProductAmount.text.toString().toInt(),id)
+
+        val item = RegisterItemDto(binding.etProductName.text.toString(),binding.etProductAmount.text.toString().toInt(),getId())
 
             viewModel.save(item)
 
@@ -51,7 +50,17 @@ class RegisterStockProductActivity : AppCompatActivity() {
     }
 
     private fun backToListStockProductsActivity() {
+        val id = getId()
+        val intent = Intent(this,ListStockProductsActivity::class.java)
+        intent.putExtra("STOCK_ID",id)
+
         startActivity(ListStockProductsActivity.createIntent(this, "Hello"))
+    }
+
+    private fun getId():Int{
+        val bundle = intent.getExtras();
+        val id = bundle!!.getInt("STOCK_ID")
+        return id
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

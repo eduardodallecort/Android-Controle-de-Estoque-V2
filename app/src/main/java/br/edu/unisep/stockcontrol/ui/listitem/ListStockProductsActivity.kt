@@ -41,7 +41,12 @@ class ListStockProductsActivity : AppCompatActivity() {
     }
     private fun initialize() {
         val stock = intent.getSerializableExtra(STOCK) as StockDto
-        viewModel.stock=stock
+        if(stock!=null){
+            viewModel.stock=stock}
+        else{
+            val bundle= intent.extras
+            val stock = StockDto(bundle!!.getInt("STOCK_ID"),"kk")
+        }
 
 
         setupList()
@@ -88,9 +93,6 @@ class ListStockProductsActivity : AppCompatActivity() {
     }
 
     private fun openNewItem() {
-        startActivityForResult(RegisterStockProductActivity.newIntent(this),
-            REQUEST_CODE_NEW_PRODUCT
-        )
         saveId(viewModel.stock)
     }
 
