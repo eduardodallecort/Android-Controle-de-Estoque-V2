@@ -46,6 +46,8 @@ class RegisterStockProductActivity : AppCompatActivity() {
 
             viewModel.save(item)
 
+        backToListStockProductsActivity()
+
     }
 
     private fun backToListStockProductsActivity() {
