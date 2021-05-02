@@ -35,10 +35,14 @@ class ListStockProductsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        initialize()
-
 
     }
+
+    override fun onStart() {
+        super.onStart()
+        initialize()
+    }
+
     private fun initialize() {
         val stock = intent.getSerializableExtra(STOCK) as StockDto
         if(stock!=null){
@@ -46,6 +50,7 @@ class ListStockProductsActivity : AppCompatActivity() {
         else{
             val bundle= intent.extras
             val stock = StockDto(bundle!!.getInt("STOCK_ID"),"kk")
+            viewModel.stock=stock
         }
 
 
