@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.viewModels
+import androidx.lifecycle.observe
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.edu.unisep.stockcontrol.R
@@ -42,11 +43,18 @@ class ListStockProductsActivity : AppCompatActivity() {
         val stock = intent.getSerializableExtra(STOCK) as StockDto
         viewModel.stock=stock
         setupList()
+        setupEvents()
 
-        viewModel.findItems()
     }
 
 
+    private fun setupEvents() {
+        viewModel.stockItems.observe(this) { item ->
+            this.adapterList.items = item
+        }
+
+        viewModel.findItems()
+    }
     private fun setupList() {
 
         adapterList = ListStockProductsAdapter()

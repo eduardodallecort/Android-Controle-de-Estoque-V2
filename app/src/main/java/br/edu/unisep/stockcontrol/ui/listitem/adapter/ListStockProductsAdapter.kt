@@ -6,11 +6,12 @@ import android.widget.ImageButton
 import androidx.recyclerview.widget.RecyclerView
 import br.edu.unisep.stockcontrol.data.entity.Item
 import br.edu.unisep.stockcontrol.databinding.ItemProductStockBinding
+import br.edu.unisep.stockcontrol.dto.Item.ItemDto
 
 class ListStockProductsAdapter:
     RecyclerView.Adapter<ListStockProductsAdapter.StockProductsViewHolder>(){
 
-    var items = listOf<Item>()
+    var items = listOf<ItemDto>()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -33,7 +34,7 @@ class ListStockProductsAdapter:
 
     inner class StockProductsViewHolder(private val binding: ItemProductStockBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bindItem(item: Item) {
+        fun bindItem(item: ItemDto) {
             binding.tvProductStockName.text = item.name
             binding.tvProductStockAmount.text = item.count.toString()
         }
