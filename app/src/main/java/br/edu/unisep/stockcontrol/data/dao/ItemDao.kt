@@ -18,4 +18,5 @@ interface ItemDao {
     @Query("select * from item where stockId = :stockid")
     suspend fun findAllStock(stockid: Int):List<Item>
 
+
 }

@@ -34,8 +34,6 @@ class ListStockProductsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
-
     }
 
     override fun onStart() {

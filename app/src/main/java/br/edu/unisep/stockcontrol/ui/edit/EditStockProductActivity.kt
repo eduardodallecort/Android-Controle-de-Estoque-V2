@@ -6,7 +6,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import br.edu.unisep.stockcontrol.databinding.ActivityEditStockProductBinding
+import br.edu.unisep.stockcontrol.dto.Item.RegisterItemDto
+import br.edu.unisep.stockcontrol.dto.Stock.StockDto
 import br.edu.unisep.stockcontrol.ui.listitem.ListStockProductsActivity
+import br.edu.unisep.stockcontrol.ui.register.RegisterStockProductActivity
 
 class EditStockProductActivity : AppCompatActivity() {
 
@@ -26,12 +29,33 @@ class EditStockProductActivity : AppCompatActivity() {
     private fun setupEvents() {
 
         binding.btnEditBackListProducts.setOnClickListener { backToListStockProductsActivity() }
+        binding.btnEditRegisterProduct.setOnClickListener { save() }
+    }
 
+    private fun save() {
+
+        val item = RegisterItemDto(binding.etEditProductName.text.toString(),
+                                    binding.etEditProductAmount.text.toString().toInt(),
+                                    getId())
+
+        val intent = Intent(this, ListStockProductsActivity::class.java)
+        val bundle = Bundle()
+        bundle.putInt("STOCK_ID",item.stockId)
+        intent.putExtras(bundle)
+        startActivity(intent)
     }
 
     private fun backToListStockProductsActivity() {
         startActivity(ListStockProductsActivity.createIntent(this, "Hello"))
     }
+
+    private fun getId():Int {
+        val bundle = intent.getExtras();
+        val id = bundle!!.getInt("STOCK_ID")
+        return id
+    }
+
+
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home) {

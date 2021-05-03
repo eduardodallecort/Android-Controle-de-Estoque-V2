@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "stock")
 data class Stock (
-    val name: String,
+    val name: String
 ){
     @PrimaryKey(autoGenerate = true)
     var id: Int? = null
