@@ -70,6 +70,9 @@ class EditStockProductActivity : AppCompatActivity() {
 
         fun newIntent(context: Context) = Intent(context, EditStockProductActivity::class.java)
 
+        fun createIntent(context: Context, message: String) =
+            Intent(context, EditStockProductActivity::class.java)
+
     }
 
 

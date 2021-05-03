@@ -8,7 +8,7 @@ import br.edu.unisep.stockcontrol.data.entity.Item
 import br.edu.unisep.stockcontrol.databinding.ItemProductStockBinding
 import br.edu.unisep.stockcontrol.dto.Item.ItemDto
 
-class ListStockProductsAdapter:
+class ListStockProductsAdapter (private val goEditProduct: (Int) -> Unit):
     RecyclerView.Adapter<ListStockProductsAdapter.StockProductsViewHolder>(){
 
 
@@ -27,6 +27,7 @@ class ListStockProductsAdapter:
 
     override fun onBindViewHolder(holder: StockProductsViewHolder, position: Int) {
         holder.bindItem(items[position])
+        holder.btnEditItem.setOnClickListener { goEditProduct(position) }
     }
 
     override fun getItemCount(): Int {

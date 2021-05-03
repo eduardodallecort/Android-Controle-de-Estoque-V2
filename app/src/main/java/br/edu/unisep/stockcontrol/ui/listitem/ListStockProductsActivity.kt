@@ -14,6 +14,7 @@ import br.edu.unisep.stockcontrol.R
 import br.edu.unisep.stockcontrol.data.entity.Item
 import br.edu.unisep.stockcontrol.databinding.ActivityListStockProductsBinding
 import br.edu.unisep.stockcontrol.dto.Stock.StockDto
+import br.edu.unisep.stockcontrol.ui.edit.EditStockProductActivity
 import br.edu.unisep.stockcontrol.ui.listitem.adapter.ListStockProductsAdapter
 import br.edu.unisep.stockcontrol.ui.listitem.contract.ListStockProductsContract.Companion.STOCK
 import br.edu.unisep.stockcontrol.ui.listitem.viewmodel.ListStockProductsViewModel
@@ -78,9 +79,10 @@ class ListStockProductsActivity : AppCompatActivity() {
 
         viewModel.findItems()
     }
+
     private fun setupList() {
 
-        adapterList = ListStockProductsAdapter()
+        adapterList = ListStockProductsAdapter(::goEditProduct)
 
         binding.rvStockProducts.adapter = adapterList
         binding.rvStockProducts.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
@@ -89,6 +91,9 @@ class ListStockProductsActivity : AppCompatActivity() {
         binding.btnBackMainActivity.setOnClickListener { backToMainActivity() }
     }
 
+    private fun goEditProduct(position: Int) {
+        startActivity(EditStockProductActivity.createIntent(this, "Hello"))
+    }
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
