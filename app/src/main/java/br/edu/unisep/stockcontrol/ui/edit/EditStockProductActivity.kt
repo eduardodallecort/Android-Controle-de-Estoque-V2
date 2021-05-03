@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import br.edu.unisep.stockcontrol.databinding.ActivityEditStockProductBinding
+import br.edu.unisep.stockcontrol.dto.Item.ItemDto
 import br.edu.unisep.stockcontrol.dto.Item.RegisterItemDto
 import br.edu.unisep.stockcontrol.dto.Stock.StockDto
 import br.edu.unisep.stockcontrol.ui.listitem.ListStockProductsActivity
@@ -33,14 +34,14 @@ class EditStockProductActivity : AppCompatActivity() {
     }
 
     private fun save() {
+        val id = getId()
 
-        val item = RegisterItemDto(binding.etEditProductName.text.toString(),
-                                    binding.etEditProductAmount.text.toString().toInt(),
-                                    getId())
+        val item = ItemDto(id,binding.etEditProductName.text.toString(),
+                                    binding.etEditProductAmount.text.toString().toInt())
 
         val intent = Intent(this, ListStockProductsActivity::class.java)
         val bundle = Bundle()
-        bundle.putInt("STOCK_ID",item.stockId)
+        bundle.putInt("STOCK_ID",id)
         intent.putExtras(bundle)
         startActivity(intent)
     }
