@@ -9,14 +9,13 @@ import kotlinx.coroutines.launch
 
 class EditStockProductViewModel : ViewModel() {
 
-    var registerResult = MutableLiveData<Unit>()
+
 
     private val repository = ItemRepository()
 
     fun update(item: RegisterItemDto) {
         viewModelScope.launch {
             repository.update(item)
-            registerResult.postValue(Unit)
         }
     }
 
