@@ -54,6 +54,7 @@ class EditStockProductActivity : AppCompatActivity() {
 
 
     private fun save() {
+
         val id = getIdProcuct()
 
         val item = UpdateItemDto(id,binding.etEditProductName.text.toString(),

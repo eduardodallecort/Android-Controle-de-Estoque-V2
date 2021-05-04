@@ -20,7 +20,8 @@ class EditStockProductViewModel : ViewModel() {
             repository.update(item)
         }
     }
-    fun findById(id:Int) {
+
+    fun findById(id:Int): ItemDto {
         viewModelScope.launch{
 
           val result = repository.findById(id)
@@ -28,6 +29,8 @@ class EditStockProductViewModel : ViewModel() {
             item=result
 
             }
+
+            return item
         }
 
     }
