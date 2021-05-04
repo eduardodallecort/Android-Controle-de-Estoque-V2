@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.activity.viewModels
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import br.edu.unisep.stockcontrol.databinding.ActivityEditStockProductBinding
 import br.edu.unisep.stockcontrol.dto.Item.ItemDto
 import br.edu.unisep.stockcontrol.dto.Item.RegisterItemDto
@@ -13,6 +15,7 @@ import br.edu.unisep.stockcontrol.dto.Item.UpdateItemDto
 import br.edu.unisep.stockcontrol.dto.Stock.StockDto
 import br.edu.unisep.stockcontrol.ui.edit.viewmodel.EditStockProductViewModel
 import br.edu.unisep.stockcontrol.ui.listitem.ListStockProductsActivity
+import br.edu.unisep.stockcontrol.ui.listitem.adapter.ListStockProductsAdapter
 import br.edu.unisep.stockcontrol.ui.listitem.viewmodel.ListStockProductsViewModel
 import br.edu.unisep.stockcontrol.ui.register.RegisterStockProductActivity
 
@@ -31,6 +34,7 @@ class EditStockProductActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         setupEvents()
+        setupItem()
     }
 
     private fun setupEvents() {
@@ -38,6 +42,16 @@ class EditStockProductActivity : AppCompatActivity() {
         binding.btnEditBackListProducts.setOnClickListener { backToListStockProductsActivity() }
         binding.btnEditRegisterProduct.setOnClickListener { save() }
     }
+    private fun setupItem() {
+
+        viewModel.findById(getIdProcuct())
+
+        binding.etEditProductName.setText(viewModel.item.name)
+        binding.etEditProductAmount.setText(viewModel.item.count.toString())
+
+
+    }
+
 
     private fun save() {
         val id = getIdProcuct()

@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 
 class EditStockProductViewModel : ViewModel() {
 
-
+    var item = ItemDto(0,"0",0)
 
     private val repository = ItemRepository()
 
@@ -20,13 +20,14 @@ class EditStockProductViewModel : ViewModel() {
             repository.update(item)
         }
     }
-    fun findById(id:Int){
+    fun findById(id:Int) {
         viewModelScope.launch{
-            repository.findByStock(id).map{item -> ItemDto(item.id,item.name,item.count)
+
+          val result = repository.findById(id)
+
+            item=result
 
             }
         }
 
     }
-
-}

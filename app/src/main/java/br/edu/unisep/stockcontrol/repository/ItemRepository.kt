@@ -11,8 +11,8 @@ class ItemRepository {
 
     private val dao = StockDb.instance.itemDao()
 
-    suspend fun findByStock(itemId: Int): List<ItemDto> {
-        val itens = dao.findAllStock(itemId)
+    suspend fun findByStock(stockId: Int): List<ItemDto> {
+        val itens = dao.findAllStock(stockId)
 
         return itens.map { item ->
             ItemDto(item.id ?: 0,
@@ -20,6 +20,15 @@ class ItemRepository {
                         item.count)
         }
     }
+
+    suspend fun findById(itemId: Int): ItemDto {
+        val item = dao.findById(itemId)
+
+        return ItemDto(item.id ?: 0,
+            item.name,
+            item.count)
+        }
+
 
     suspend fun save(register: RegisterItemDto) {
         val entity = Item(null,register.name,register.count,register.stockId)
