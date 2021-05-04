@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import br.edu.unisep.stockcontrol.R
 import br.edu.unisep.stockcontrol.data.entity.Item
 import br.edu.unisep.stockcontrol.databinding.ActivityListStockProductsBinding
+import br.edu.unisep.stockcontrol.dto.Item.ItemDto
 import br.edu.unisep.stockcontrol.dto.Stock.StockDto
 import br.edu.unisep.stockcontrol.ui.edit.EditStockProductActivity
 import br.edu.unisep.stockcontrol.ui.listitem.adapter.ListStockProductsAdapter
@@ -54,7 +55,7 @@ class ListStockProductsActivity : AppCompatActivity() {
         catch (e:Exception)
     {
         val bundle = intent.extras
-        val stock = StockDto(bundle!!.getInt("STOCK_ID"), "kk")
+        val stock = StockDto(bundle!!.getInt("STOCK_ID"), "")
         viewModel.stock = stock
     }
 
@@ -92,7 +93,14 @@ class ListStockProductsActivity : AppCompatActivity() {
     }
 
     private fun goEditProduct(position: Int) {
-        startActivity(EditStockProductActivity.createIntent(this, "Hello"))
+        val item = viewModel.stockItems.value!!.get(position)
+
+        val intent = Intent(this,EditStockProductActivity::class.java)
+        val bundle = Bundle()
+        bundle.putInt("STOCK_ID",viewModel.stock.Id)
+        bundle.putInt("PRODUCT_ID",item.id)
+        intent.putExtras(bundle)
+        startActivity(intent)
     }
 
 

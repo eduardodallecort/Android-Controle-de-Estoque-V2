@@ -5,11 +5,15 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import androidx.activity.viewModels
 import br.edu.unisep.stockcontrol.databinding.ActivityEditStockProductBinding
 import br.edu.unisep.stockcontrol.dto.Item.ItemDto
 import br.edu.unisep.stockcontrol.dto.Item.RegisterItemDto
+import br.edu.unisep.stockcontrol.dto.Item.UpdateItemDto
 import br.edu.unisep.stockcontrol.dto.Stock.StockDto
+import br.edu.unisep.stockcontrol.ui.edit.viewmodel.EditStockProductViewModel
 import br.edu.unisep.stockcontrol.ui.listitem.ListStockProductsActivity
+import br.edu.unisep.stockcontrol.ui.listitem.viewmodel.ListStockProductsViewModel
 import br.edu.unisep.stockcontrol.ui.register.RegisterStockProductActivity
 
 class EditStockProductActivity : AppCompatActivity() {
@@ -17,6 +21,8 @@ class EditStockProductActivity : AppCompatActivity() {
     private val binding : ActivityEditStockProductBinding by lazy {
         ActivityEditStockProductBinding.inflate(layoutInflater)
     }
+
+    private val viewModel by viewModels<EditStockProductViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,25 +40,32 @@ class EditStockProductActivity : AppCompatActivity() {
     }
 
     private fun save() {
-        val id = getId()
+        val id = getIdProcuct()
 
-        val item = ItemDto(id,binding.etEditProductName.text.toString(),
-                                    binding.etEditProductAmount.text.toString().toInt())
+        val item = UpdateItemDto(id,binding.etEditProductName.text.toString(),
+                                    binding.etEditProductAmount.text.toString().toInt(),getId())
 
-        val intent = Intent(this, ListStockProductsActivity::class.java)
-        val bundle = Bundle()
-        bundle.putInt("STOCK_ID",id)
-        intent.putExtras(bundle)
-        startActivity(intent)
+        viewModel.update(item)
+
+       backToListStockProductsActivity()
     }
 
     private fun backToListStockProductsActivity() {
-        startActivity(ListStockProductsActivity.createIntent(this, "Hello"))
+        val id = getId()
+        val intent = Intent(this,ListStockProductsActivity::class.java)
+        intent.putExtra("STOCK_ID",id)
+
+        startActivity(intent)
     }
 
     private fun getId():Int {
         val bundle = intent.getExtras();
         val id = bundle!!.getInt("STOCK_ID")
+        return id
+    }
+    private fun getIdProcuct():Int {
+        val bundle = intent.getExtras();
+        val id = bundle!!.getInt("PRODUCT_ID")
         return id
     }
 
