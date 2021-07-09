@@ -101,6 +101,7 @@ class ListStockProductsActivity : AppCompatActivity() {
         val intent = Intent(this,EditStockProductActivity::class.java).putExtra("PRODUCT",item)
         intent.putExtra("STOCK_ID",viewModel.stock.Id)
         startActivity(intent)
+        finish()
     }
 
 
@@ -115,6 +116,7 @@ class ListStockProductsActivity : AppCompatActivity() {
 
     private fun backToMainActivity() {
         startActivity(ListStocksActivity.createIntent(this,"go"))
+        finish()
     }
 
 

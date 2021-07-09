@@ -65,6 +65,7 @@ class ListStocksActivity : AppCompatActivity() {
 
     private val openNewStock  = registerForActivityResult(ListStockProductsContract()) {
        viewModel.list()
+        finish()
     }
 
 
@@ -97,7 +98,6 @@ class ListStocksActivity : AppCompatActivity() {
 
 
 
-        const val REQUEST_CODE_NEW_STOCK = 1
     }
 
     

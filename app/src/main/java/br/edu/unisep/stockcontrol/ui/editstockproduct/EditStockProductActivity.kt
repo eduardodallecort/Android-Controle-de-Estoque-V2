@@ -59,9 +59,9 @@ class EditStockProductActivity : AppCompatActivity() {
         viewModel.update(getUpdateItemDto(getProcuct()))
         backToListStockProductsActivity()
     }
-
     private fun backToListStockProductsActivity() {
         startActivity(Intent(this,ListStockProductsActivity::class.java).putExtra("STOCK_ID",getStockId()))
+        finish()
     }
 
     private fun getStockId():Int { return intent.getExtras()!!.getInt("STOCK_ID") }
