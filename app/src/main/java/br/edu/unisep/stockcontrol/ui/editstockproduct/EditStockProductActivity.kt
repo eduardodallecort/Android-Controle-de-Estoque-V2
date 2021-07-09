@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import br.edu.unisep.stockcontrol.R
 import br.edu.unisep.stockcontrol.databinding.ActivityEditStockProductBinding
 import br.edu.unisep.stockcontrol.domain.dto.Item.ItemDto
 import br.edu.unisep.stockcontrol.domain.dto.Item.UpdateItemDto
@@ -28,11 +29,21 @@ class EditStockProductActivity : AppCompatActivity() {
         setupEvents()
         setupItem()
     }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.closeButton) {
+            backToListStockProductsActivity()
+            return true
+        }
+
+        return false
+    }
 
     private fun setupEvents() {
 
         binding.btnEditBackListProducts.setOnClickListener { backToListStockProductsActivity() }
         binding.btnEditRegisterProduct.setOnClickListener { save() }
+        binding.btnAdd.setOnClickListener { add() }
+        binding.btnMinus.setOnClickListener { minus() }
     }
     private fun setupItem() {
         viewModel.item= getProcuct()
@@ -55,7 +66,6 @@ class EditStockProductActivity : AppCompatActivity() {
 
     private fun getStockId():Int { return intent.getExtras()!!.getInt("STOCK_ID") }
     private fun getProcuct():ItemDto { return intent.getExtras()!!.get("PRODUCT") as ItemDto }
-
     private fun getUpdateItemDto(item: ItemDto):UpdateItemDto{
         return UpdateItemDto(item.id,
             binding.etEditProductName.text.toString(),
@@ -63,16 +73,16 @@ class EditStockProductActivity : AppCompatActivity() {
             getStockId())
     }
 
+    private fun add(){
+        val amount = binding.etEditProductAmount.text.toString().toInt()
+        binding.etEditProductAmount.setText((amount+1).toString()) }
+    private fun minus(){
+        val amount = binding.etEditProductAmount.text.toString().toInt()
+        binding.etEditProductAmount.setText((amount-1)).toString() }
 
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == android.R.id.closeButton) {
-            backToListStockProductsActivity()
-            return true
-        }
 
-        return false
-    }
+
 
 
 
