@@ -77,8 +77,8 @@ class EditStockProductActivity : AppCompatActivity() {
         val amount = binding.etEditProductAmount.text.toString().toInt()
         binding.etEditProductAmount.setText((amount+1).toString()) }
     private fun minus(){
-        val amount = binding.etEditProductAmount.text.toString().toInt()
-        binding.etEditProductAmount.setText((amount-1)).toString() }
+        val amount = (binding.etEditProductAmount.text.toString().toInt())
+        binding.etEditProductAmount.setText((amount-1).toString()) }
 
 
 
