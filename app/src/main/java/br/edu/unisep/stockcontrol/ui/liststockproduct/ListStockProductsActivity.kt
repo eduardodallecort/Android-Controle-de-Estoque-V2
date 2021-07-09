@@ -27,7 +27,7 @@ class ListStockProductsActivity : AppCompatActivity() {
 
     private val viewModel :ListStockProductsViewModel by viewModel()
 
-    val binding : ActivityListStockProductsBinding by lazy {
+    private val binding : ActivityListStockProductsBinding by lazy {
         ActivityListStockProductsBinding.inflate(layoutInflater)
     }
 
