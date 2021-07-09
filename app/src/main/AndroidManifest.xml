@@ -10,11 +10,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.StockControl">
-        <activity android:name=".ui.edit.EditStockProductActivity"></activity>
+        <activity android:name=".ui.editstockproduct.EditStockProductActivity"></activity>
         <activity android:name=".ui.EditStockProductActivity" />
-        <activity android:name=".ui.listitem.ListStockProductsActivity" />
-        <activity android:name=".ui.register.RegisterStockActivity" />
-        <activity android:name=".ui.register.RegisterStockProductActivity" />
+        <activity android:name=".ui.liststockproduct.ListStockProductsActivity" />
+        <activity android:name=".ui.registerstock.RegisterStockActivity" />
+        <activity android:name=".ui.registerstrockproduct.RegisterStockProductActivity" />
         <activity android:name=".ui.liststock.ListStocksActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

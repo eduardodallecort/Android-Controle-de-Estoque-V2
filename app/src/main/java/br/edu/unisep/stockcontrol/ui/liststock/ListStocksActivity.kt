@@ -7,23 +7,21 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.activity.viewModels
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.edu.unisep.stockcontrol.R
 import br.edu.unisep.stockcontrol.databinding.ActivityMainBinding
-import br.edu.unisep.stockcontrol.dto.Stock.StockDto
-import br.edu.unisep.stockcontrol.ui.listitem.contract.ListStockProductsContract
-import br.edu.unisep.stockcontrol.ui.liststock.adapter.StocksAdapter
-import br.edu.unisep.stockcontrol.ui.liststock.viewmodel.ListStocksViewModel
-import br.edu.unisep.stockcontrol.ui.register.RegisterStockActivity
+import br.edu.unisep.stockcontrol.domain.dto.Stock.StockDto
+import br.edu.unisep.stockcontrol.ui.liststockproduct.contract.ListStockProductsContract
+import br.edu.unisep.stockcontrol.ui.registerstock.RegisterStockActivity
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ListStocksActivity : AppCompatActivity() {
 
-    private lateinit var adapter: StocksAdapter
+    private lateinit var adapterList: ListStocksAdapter
 
-    private val viewModel: ListStocksViewModel by viewModels()
+    private val viewModel: ListStocksViewModel by viewModel()
 
 
     private val binding : ActivityMainBinding by lazy {
@@ -43,11 +41,11 @@ class ListStocksActivity : AppCompatActivity() {
 
     private fun setupList() {
 
-        adapter = StocksAdapter()
-        adapter.onItemSelected = ::onStockSelected
+        adapterList = ListStocksAdapter()
+        adapterList.onItemSelected = ::onStockSelected
 
 
-        binding.rvStockGroups.adapter = adapter
+        binding.rvStockGroups.adapter = adapterList
         binding.rvStockGroups.layoutManager = LinearLayoutManager(this)
         binding.rvStockGroups.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
 
@@ -55,7 +53,7 @@ class ListStocksActivity : AppCompatActivity() {
     }
     private fun setupEvents() {
         viewModel.listStocks.observe(this) { stock ->
-            this.adapter.stocks = stock
+            this.adapterList.stocks = stock
         }
 
         viewModel.list()
